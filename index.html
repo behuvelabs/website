@@ -2,19 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>behuve</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo">:)</div>
-            <h1 style="font-size: 48px; margin-bottom: 20px;">behuve</h1>
-            <p class="tagline">website coming soon...</p>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <h1 id="typewriter"></h1>
+            <div class="spacer"></div>
+            <div class="spacer"></div>
+            <div class="hero-divider"></div>
         </header>
+
+        <div class="tabs">
+            <div class="tab underline active" onclick="showSection('writings')">writings</div>
+            <div class="tab underline" onclick="showSection('tools')">tools</div>
+        </div>
+
+        <!-- WRITING -->
+        <div id="writings" class="section active">
+            <div class="card">
+                <h2>"But It's Just a CTF"</h2>
+                <p>Discussing Cybersecurity Risks of LLMs · Noah Wong · January 2026</p>
+                <div class="buttons">
+                    <a class="btn disabled" aria-disabled="true">coming soon</a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>What is behuve?</h2>
+                <p>An Introduction to the Platform · Noah Wong · January 2026</p>
+                <div class="buttons">
+                    <!--<a class="btn primary" href="writings/1-what-is-behuve.html">read</a>--->
+                    <a class="btn disabled" aria-disabled="true">coming soon</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOOLS -->
+        <div id="tools" class="section">
+            <div class="card">
+                <h2>Esoterify</h2>
+                <p>Cryptographic Chaining Toolkit · RSA · ChaCha20 · AES · Caesar</p>
+                <div class="buttons">
+                   <a class="btn disabled" aria-disabled="true">coming soon</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a class="underline" href="mailto:behuvelabs@gmail.com">email</a>
+                <a class="underline" href="https://github.com/behuvelabs" target="_blank">github</a>
+                <a class="underline" href="https://linkedin.com" target="_blank">linkedin</a>
+            </div>
+            <p>© 2026 behuve labs</p>
+        </footer>
+    </div>
+
+    <script>
+        const text = "behuve labs :)";
+        const target = document.getElementById("typewriter");
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                // When we reach the last two characters ":)"
+                if (i === text.length - 2) {
+                    const span = document.createElement("span");
+                    span.className = "green";
+                    span.textContent = text.slice(i);
+                    target.appendChild(span);
+                    i = text.length;
+                } else {
+                    target.append(text.charAt(i));
+                    i++;
+                }
+                setTimeout(type, 120);
+            }
+        }
+
+        type();
+
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
