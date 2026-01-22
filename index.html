@@ -2,41 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>behuve</title>
+    <title>Behuve Labs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
+            <!----
+            <button id="theme-toggle" aria-label="Toggle light and dark mode">
+                <span class="icon">☾</span>
+            </button>
+            ----->
             <div class="spacer"></div>
             <div class="spacer"></div>
             <h1 id="typewriter"></h1>
+            <a href="writings/1-what-is-behuve.html" class="what-is">
+                what is this? →
+            </a>
             <div class="spacer"></div>
             <div class="spacer"></div>
             <div class="hero-divider"></div>
         </header>
 
         <div class="tabs">
-            <div class="tab underline active" onclick="showSection('writings')">writings</div>
+            <div class="tab underline active" onclick="showSection('writings')">writing</div>
             <div class="tab underline" onclick="showSection('tools')">tools</div>
         </div>
 
         <!-- WRITING -->
         <div id="writings" class="section active">
             <div class="card">
-                <h2>"But It's Just a CTF"</h2>
+                <h2>Chill, It's Just a CTF</h2>
                 <p>Discussing Cybersecurity Risks of LLMs · Noah Wong · January 2026</p>
                 <div class="buttons">
                     <a class="btn disabled" aria-disabled="true">coming soon</a>
                 </div>
             </div>
             <div class="card">
-                <h2>What is behuve?</h2>
+                <h2>What is Behuve?</h2>
                 <p>An Introduction to the Platform · Noah Wong · January 2026</p>
                 <div class="buttons">
-                    <!--<a class="btn primary" href="writings/1-what-is-behuve.html">read</a>--->
-                    <a class="btn disabled" aria-disabled="true">coming soon</a>
+                    <a class="btn primary" href="writings/1-what-is-behuve.html">read</a>
                 </div>
             </div>
         </div>
@@ -53,12 +60,7 @@
         </div>
 
         <footer>
-            <div class="footer-links">
-                <a class="underline" href="mailto:behuvelabs@gmail.com">email</a>
-                <a class="underline" href="https://github.com/behuvelabs" target="_blank">github</a>
-                <a class="underline" href="https://linkedin.com" target="_blank">linkedin</a>
-            </div>
-            <p>© 2026 behuve labs</p>
+            <p>© 2026 Behuve Labs</p>
         </footer>
     </div>
 
@@ -66,6 +68,8 @@
         const text = "behuve labs :)";
         const target = document.getElementById("typewriter");
         let i = 0;
+
+        target.classList.add("typing");
 
         function type() {
             if (i < text.length) {
@@ -81,6 +85,8 @@
                     i++;
                 }
                 setTimeout(type, 120);
+            } else {
+                target.classList.remove("typing"); // stops flicker
             }
         }
 
@@ -92,6 +98,30 @@
             document.getElementById(id).classList.add('active');
             event.target.classList.add('active');
         }
+
+        const toggle = document.getElementById("theme-toggle");
+        const icon = toggle.querySelector(".icon");
+
+        function setTheme(theme) {
+            document.body.classList.toggle("light", theme === "light");
+            icon.textContent = theme === "light" ? "☀︎" : "☾";
+            localStorage.setItem("theme", theme);
+        }
+
+        // initial load
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+            setTheme("light");
+        } else {
+            setTheme("dark");
+        }
+
+        toggle.addEventListener("click", () => {
+            const isLight = document.body.classList.contains("light");
+            setTheme(isLight ? "dark" : "light");
+        });
     </script>
 </body>
 </html>

@@ -6,8 +6,14 @@
 
 :root {
     --green: #00bf63;
-    --black: #111;
-    --white: #fdfdfd;
+    --black: #131313;
+    --white: #eee;
+}
+
+body.light {
+    --green: #008c31;
+    --black: #ddc;
+    --white: #111;
 }
 
 .green {
@@ -129,8 +135,8 @@ h1 {
 }
 
 .btn:hover {
-	background-color: #111;
-	color: #00bf63;
+	background-color: var(--black);
+	color: var(--green);
     transform: translateY(-2px);
 }
 
@@ -248,6 +254,10 @@ footer p {
 }
 
 #typewriter::after {
+    content: "";
+}
+
+#typewriter.typing::after {
     content: "|";
     margin-left: 4px;
     animation: blink 1s infinite;
@@ -268,6 +278,68 @@ footer p {
 .btn.disabled:hover,
 .btn[aria-disabled="true"]:hover {
     transform: none;
+}
+
+.what-is {
+    display: inline-block;
+    margin-top: 12px;
+
+    color: var(--green);
+    font-weight: 600;
+    text-decoration: none;
+
+    position: relative;
+}
+
+.what-is::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: var(--green);
+    transition: width 0.2s ease;
+}
+
+.what-is:hover::after {
+    width: 100%;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+
+    background: none;
+    border: 2px solid var(--green);
+    border-radius: 999px;
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--green);
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+#theme-toggle:hover {
+    background: var(--green);
+    color: var(--black);
+    transform: scale(1.05);
+}
+
+#theme-toggle .icon {
+    font-size: 16px;
+    line-height: 1;
 }
 
 @keyframes blink {
