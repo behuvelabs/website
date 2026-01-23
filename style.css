@@ -209,13 +209,18 @@ footer {
     background: var(--green);
 }
 
+img {
+    max-width: 75%;
+    border: 1px solid #00bf63;
+}
+
 footer p {
     font-size: 14px;
 }
 
 /* Writing page */
 .article {
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
