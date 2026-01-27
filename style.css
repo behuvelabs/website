@@ -161,7 +161,7 @@ h1 {
 footer {
     margin-top: 80px;
     padding-top: 30px;
-    border-top: 2px solid var(--green);
+    /*border-top: 2px solid var(--green);*/
     text-align: center;
 }
 
@@ -246,10 +246,13 @@ footer p {
 }
 
 .hero-divider {
-    width: 100%;
+    width: 100vw;
     height: 2px;
     background: var(--green);
     margin: 30px 0 25px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .hero-description {
@@ -376,12 +379,22 @@ footer p {
     .card {
         padding: 20px;
     }
+    .spacer {
+        height: 30px;
+        width: 100%;
+        background: var(--black);
+    }
 }
 
 /* Tablets */
 @media (min-width: 481px) and (max-width: 768px) {
+    .spacer {
+        height: 30px;
+        width: 100%;
+        background: var(--black);
+    }
     h1 {
-        font-size: 72px;
+        font-size: 85px;
     }
 
     .logo {
@@ -394,9 +407,9 @@ footer p {
 }
 
 /* Laptops / Desktops */
-@media (min-width: 769px) {
+@media (min-width: 781px) {
     h1 {
-        font-size: 110px;
+        font-size: 140px;
     }
 
     .tabs {

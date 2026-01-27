@@ -23,13 +23,9 @@
             </a>
             <div class="spacer"></div>
             <div class="spacer"></div>
-            <div class="hero-divider"></div>
+            <!--<div class="hero-divider"></div>-->
         </header>
 
-        <div class="tabs">
-            <div class="tab underline active" onclick="showSection('writings')">writing</div>
-            <div class="tab underline" onclick="showSection('tools')">tools</div>
-        </div>
 
         <!-- WRITING -->
         <div id="writings" class="section active">
@@ -49,24 +45,13 @@
             </div>
         </div>
 
-        <!-- TOOLS -->
-        <div id="tools" class="section">
-            <div class="card">
-                <h2>Esoterify</h2>
-                <p>Cryptographic Chaining Toolkit</p>
-                <div class="buttons">
-                   <a class="btn disabled" aria-disabled="true">coming soon</a>
-                </div>
-            </div>
-        </div>
-
         <footer>
             <p>© 2026 Behuve Labs</p>
         </footer>
     </div>
 
     <script>
-        const text = "behuve labs :)";
+        const text = "behuve :)";
         const target = document.getElementById("typewriter");
         let i = 0;
 
@@ -85,7 +70,7 @@
                     target.append(text.charAt(i));
                     i++;
                 }
-                setTimeout(type, 120);
+                setTimeout(type, 200);
             } else {
                 target.classList.remove("typing"); // stops flicker
             }
