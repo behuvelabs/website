@@ -55,6 +55,7 @@
         const target = document.getElementById("typewriter");
         let i = 0;
 
+        const isMobile = window.matchMedia("(max-width: 480px)").matches;
         target.classList.add("typing");
 
         function type() {
@@ -75,8 +76,10 @@
                 target.classList.remove("typing"); // stops flicker
             }
         }
-
-        type();
+        
+        if (!isMobile) {
+            type();
+        }
 
         function showSection(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
