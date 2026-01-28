@@ -57,12 +57,14 @@
 
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
         target.classList.add("typing");
-
-        
         
         function type() {
             if (isMobile) {
-                target.textContent = text;
+                target.textContent = "behuve ";
+                const span = document.createElement("span");
+                span.className = "green";
+                span.textContent = ":)";
+                target.appendChild(span);
                 target.classList.remove("typing");
             }   
             else {
