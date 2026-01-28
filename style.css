@@ -394,6 +394,9 @@ footer p {
     .spacer {
         height: 30px;
     }
+    h1 {
+        font-size: 88px;
+    }
 }
 
 /* Tablets */
