@@ -58,29 +58,35 @@
         const isMobile = window.matchMedia("(max-width: 480px)").matches;
         target.classList.add("typing");
 
+        
+        
         function type() {
-            if (i < text.length) {
-                // When we reach the last two characters ":)"
-                if (i === text.length - 2) {
-                    const span = document.createElement("span");
-                    span.className = "green";
-                    span.textContent = text.slice(i);
-                    target.appendChild(span);
-                    i = text.length;
+            if (isMobile) {
+                target.textContent = text;
+                target.classList.remove("typing");
+            }   
+            else {
+                if (i < text.length) {
+                    // When we reach the last two characters ":)"
+                    if (i === text.length - 2) {
+                        const span = document.createElement("span");
+                        span.className = "green";
+                        span.textContent = text.slice(i);
+                        target.appendChild(span);
+                        i = text.length;
+                    } else {
+                        target.append(text.charAt(i));
+                        i++;
+                    }
+                    setTimeout(type, 200);
                 } else {
-                    target.append(text.charAt(i));
-                    i++;
+                    target.classList.remove("typing"); // stops flicker
                 }
-                setTimeout(type, 200);
-            } else {
-                target.classList.remove("typing"); // stops flicker
             }
         }
         
-        if (!isMobile) {
-            type();
-        }
-
+        type();
+        
         function showSection(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
