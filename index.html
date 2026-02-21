@@ -454,12 +454,12 @@
       <a class="contact-link-item" href="mailto:noaheverestwong@gmail.com">
         <span class="link-label">Contact</span>
         <span class="link-value">Noah Wong</span>
-        <span class="link-arrow">↗</span>
+        <span class="link-arrow">↗&#xFE0E</span>
       </a>
       <a class="contact-link-item" href="mailto:aatripathy.07@gmail.com">
         <span class="link-label">Contact</span>
         <span class="link-value">Arnav Tripathy</span>
-        <span class="link-arrow">↗</span>
+        <span class="link-arrow">↗&#xFE0E</span>
       </a>
     </div>
   </div>
@@ -538,7 +538,11 @@
     requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize', () => { resize(); initParticles(); });
+  let resizeTimer;
+    window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { resize(); initParticles(); }, 250);
+    });
   resize(); initParticles(); draw();
 })();
 
