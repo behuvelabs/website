@@ -372,7 +372,6 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      canvas#hero-canvas { display: none; }
       .hero { min-height: 500px; padding-bottom: 48px; }
       nav { padding: 24px 28px; }
       .nav-links { gap: 24px; }
@@ -382,6 +381,10 @@
       .nanosim-inner { grid-template-columns: 1fr; }
       .contact { grid-template-columns: 1fr; gap: 40px; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 500px) {
+      canvas#hero-canvas { display: none; }
     }
   </style>
 </head>
@@ -405,7 +408,7 @@
       Where innovation<br>meets <em>intelligence</em>
     </h1>
     <p class="hero-sub">
-      Behuve Labs bridges the frontier between advanced hardware and software, building applied research into cutting-edge, security-focused, and high-performance products.
+      Behuve Labs operates at the frontier of advanced hardware and software, turning applied research into cutting-edge products.
     </p>
   </div>
   <div class="hero-scroll">
