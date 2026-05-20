@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+    ================================================================
+    TEMPLATE INSTRUCTIONS
+    ================================================================
+
+    Structure mirrors post-template.md:
+      1. The title is the insight — one sentence, the non-obvious thing.
+      2. The subtitle answers "why is this worth a post?" — not "what is
+         the paper about." If you can't answer that in two sentences,
+         keep reading before writing.
+      3. Sections: How it works → The catch → Thread.
+         Do not add sections. Cut instead.
+      4. The paper card is the only place for citation info.
+         Don't re-introduce it in the body.
+      5. Write toward confusion. Posts that document what was hard or
+         surprising are more useful than ones that only show conclusions.
+
+    ================================================================
+  -->
+
+  <title>[INSIGHT AS TITLE] — Behuve Research</title>
+  <link rel="icon" href="../icon.png" />
+  <link rel="stylesheet" href="post-style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">Behuve Research</a>
+  <a class="nav-back" href="../index.html">← Home</a>
+</nav>
+
+<main>
+
+  <!-- ============================================================
+       POST HEADER
+       ============================================================ -->
+  <header class="post-header">
+
+    <div class="post-meta">
+      <span class="post-type">Paper Note</span>
+      <span class="post-date">[Month YYYY]</span>
+      <span class="post-author">— [Your Name]</span>
+    </div>
+
+    <!--
+      Title = the insight, not the paper title.
+      "seccomp-bpf can't filter by argument value" is better than
+      "A Review of Syscall Filtering in Linux."
+    -->
+    <h1 class="post-title">[The non-obvious thing — one sentence]</h1>
+
+    <p class="post-subtitle">
+      [Why is this worth a post? Not what the paper covers — why *this*
+      specific thing is interesting and why it matters right now.
+      If you can write this before reading the paper, you haven't found
+      the insight yet.]
+    </p>
+
+  </header>
+
+  <!-- ============================================================
+       PAPER CARD
+       Citation info lives here and nowhere else in the post.
+       ============================================================ -->
+  <aside class="paper-card">
+    <div class="paper-card-row">
+      <span class="paper-card-label">Paper</span>
+      <span class="paper-card-value">[Full paper title]</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">Authors</span>
+      <span class="paper-card-value">[Author names]</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">Venue</span>
+      <span class="paper-card-value">[Conference / journal / year]</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">Link</span>
+      <span class="paper-card-value">
+        <a href="#">[PDF / arXiv / ACM DL]</a>
+      </span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">TL;DR</span>
+      <span class="paper-card-value">[One sentence verdict — the thing to take away, not a summary.]</span>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       POST BODY
+       ============================================================ -->
+  <article class="post-body">
+
+    <!-- ── SECTION: How it works ────────────────────────────── -->
+    <!--
+      Mechanism in service of the insight. Not a full explanation —
+      just enough so the insight makes sense. Use a concrete example
+      instead of an abstract description wherever possible. As short
+      as it can be while still being clear.
+    -->
+    <h2>How It Works</h2>
+
+    <p>
+      [Set up the mechanism. What does the paper actually do or build?
+      Ground this in something concrete — a specific syscall, a data
+      structure, a policy format. One or two paragraphs max.]
+    </p>
+
+    <!-- Code block — keep if the insight is clearest in code. Delete otherwise. -->
+    <pre><code><span class="cm">// [Short label describing what this shows]</span>
+<span class="cm">// Replace with a minimal, real example that earns its space.</span>
+[code here]</code></pre>
+
+    <p>
+      [Follow every code block with a sentence on what to notice.
+      What would someone miss if they skimmed it?]
+    </p>
+
+    <div class="callout">
+      <strong>Key insight:</strong> [One sentence. The sharpest version of the
+      insight — the thing someone should remember if they forget everything else.]
+    </div>
+
+    <!-- ── SECTION: The Catch ────────────────────────────────── -->
+    <!--
+      This is where you show you actually read critically.
+      What does this not handle? What assumption might break in practice?
+      What did the paper explicitly leave out of scope and why?
+      A few honest sentences here are worth more than a paragraph of praise.
+    -->
+    <h2>The Catch</h2>
+
+    <p>
+      [What this approach doesn't handle. Be specific — "doesn't handle
+      multi-threaded programs" is better than "has limitations."]
+    </p>
+
+    <ul>
+      <li>[What assumption might not hold in practice?]</li>
+      <li>[What does the paper explicitly leave out of scope?]</li>
+      <li>[What would you want to see in follow-up work?]</li>
+    </ul>
+
+    <div class="callout warn">
+      <strong>Caveat:</strong> [Something concrete the reader should know
+      before applying this to their own work. Not a vague warning — a
+      specific condition where this breaks.]
+    </div>
+
+    <!-- ── SECTION: Thread ───────────────────────────────────── -->
+    <!--
+      One paragraph. A follow-up paper, an open question, or a
+      connection to something you're building or reading next.
+      This is what makes the post yours. Be specific — a vague
+      "this is relevant to future work" is worse than nothing.
+    -->
+    <h2>Thread</h2>
+
+    <p>
+      [One to three sentences. Where does this lead? A paper this cites
+      that you want to read next? An open question this raises? A direct
+      connection to something in the current project? Name the thing —
+      don't gesture at a direction.]
+    </p>
+
+  </article>
+
+  <!-- ============================================================
+       POST FOOTER
+       ============================================================ -->
+  <div class="post-footer">
+    <a href="../index.html">← All posts</a>
+    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
+      [Month YYYY] · Behuve Research
+    </span>
+  </div>
+
+</main>
+
+<footer>
+  <span>Behuve Research</span>
+  <span>© 2025</span>
+</footer>
+
+</body>
+</html>

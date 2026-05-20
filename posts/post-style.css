@@ -1,0 +1,353 @@
+/* ============================================================
+   POST STYLESHEET — posts/post-style.css
+   Shared across all posts. Paths are relative to /posts/.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@300;400&display=swap');
+
+:root {
+  --bg:          #0b0d0f;
+  --bg-card:     #111417;
+  --bg-card-border: #1e2328;
+  --text:        #d8dde3;
+  --text-muted:  #cccfd3;
+  --text-dim:    #a5a9af;
+  --accent:      #38b6ff;
+  --accent-dim:  rgba(56, 182, 255, 0.12);
+  --border:      #1a1f26;
+
+  --font-sans: 'Geist', 'Helvetica Neue', sans-serif;
+  --font-mono: 'Geist Mono', 'Fira Code', monospace;
+
+  --col: 680px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 17px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.75;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 56px;
+  background: rgba(11, 13, 15, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-logo:hover { color: var(--accent); }
+
+.nav-back {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--text-muted); }
+
+/* ── MAIN COLUMN ── */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--col);
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+/* ── POST HEADER ── */
+.post-header {
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.post-type {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(56, 182, 255, 0.2);
+  padding: 3px 9px;
+}
+
+.post-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.post-author {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.post-title {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.post-subtitle {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* ── PAPER CARD (paper reviews only) ── */
+.paper-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  padding: 20px 24px;
+  margin-bottom: 48px;
+}
+
+.paper-card-row {
+  display: flex;
+  gap: 20px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.paper-card-row:last-child { border-bottom: none; padding-bottom: 0; }
+.paper-card-row:first-child { padding-top: 0; }
+
+.paper-card-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  min-width: 70px;
+  padding-top: 1px;
+  flex-shrink: 0;
+}
+
+.paper-card-value {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── BODY TYPOGRAPHY ── */
+.post-body h2 {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 48px;
+  margin-bottom: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.post-body h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  margin-top: 32px;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.post-body p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.post-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(56, 182, 255, 0.3);
+  transition: text-decoration-color 0.2s;
+}
+.post-body a:hover { text-decoration-color: var(--accent); }
+
+/* ── CODE ── */
+.post-body pre {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 24px 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.post-body code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.post-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: var(--text-muted);
+}
+
+/* syntax highlight spots — minimal, tasteful */
+.post-body pre .kw  { color: var(--accent); }          /* keywords */
+.post-body pre .str { color: #7ec87e; }                 /* strings */
+.post-body pre .cm  { color: var(--text-dim); font-style: italic; } /* comments */
+.post-body pre .num { color: var(--accent); }                 /* numbers */
+
+/* ── CALLOUT BLOCKS ── */
+.callout {
+  border-left: 2px solid var(--accent);
+  background: var(--bg-card);
+  padding: 16px 20px;
+  margin: 28px 0;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.callout.warn {
+  border-color: var(--accent);
+}
+
+/* ── LISTS ── */
+.post-body ul, .post-body ol {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.post-body li {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  line-height: 1.75;
+}
+
+/* ── FIGURES ── */
+figure {
+  margin: 32px 0;
+}
+
+figure img {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+figcaption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ── TABLE ── */
+.post-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 28px 0;
+}
+
+.post-body th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: left;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-body td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.post-body tr:last-child td { border-bottom: none; }
+
+/* ── POST FOOTER ── */
+.post-footer {
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-footer a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.post-footer a:hover { color: var(--accent); }
+
+/* ── SITE FOOTER ── */
+footer {
+  padding: 24px 56px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+@media (max-width: 700px) {
+  nav { padding: 16px 20px; }
+  main { padding: 40px 20px 72px; }
+  footer { padding: 20px; }
+}

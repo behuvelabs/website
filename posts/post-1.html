@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chrome's Security Architecture: Renderer Trust and the Same-Origin Policy — Behuve Research</title>
+  <link rel="icon" href="../icon.png" />
+  <link rel="stylesheet" href="post-style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../index.html">Behuve Research</a>
+  <a class="nav-back" href="../index.html">← Home</a>
+</nav>
+
+<main>
+
+  <header class="post-header">
+    <div class="post-meta">
+      <span class="post-type">Paper Note</span>
+      <span class="post-date">May 2026</span>
+    </div>
+    <h1 class="post-title">Chrome's Security Architecture: Renderer Trust and the Same-Origin Policy</h1>
+    <p class="post-subtitle">
+      The browser kernel didn't know attacker.com from bank.com.
+    </p>
+  </header>
+
+  <aside class="paper-card">
+    <div class="paper-card-row">
+      <span class="paper-card-label">Paper</span>
+      <span class="paper-card-value">The Security Architecture of the Chromium Browser</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">Authors</span>
+      <span class="paper-card-value">Adam Barth, Collin Jackson, Charles Reis, Google Chrome Team</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">Venue</span>
+      <span class="paper-card-value">USENIX HotSec · 2008</span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">Link</span>
+      <span class="paper-card-value">
+        <a href="https://seclab.stanford.edu/websec/chromium/chromium-security-architecture.pdf">PDF</a>
+      </span>
+    </div>
+    <div class="paper-card-row">
+      <span class="paper-card-label">TL;DR</span>
+      <span class="paper-card-value">Chrome didn't solve the same-origin policy until 10 years after they protected the OS.</span>
+    </div>
+  </aside>
+
+  <article class="post-body">
+
+    <p>Chromium's architecture was designed to protect a user's OS from malicious websites. It is not designed to protect websites from each other.</p>
+
+    <blockquote>For example, if attacker.com compromises the rendering engine, they can ask the browser kernel for bank.com's data and receive it.</blockquote>
+
+    <p>The 2008 security architecture paper identifies origin isolation as a limitation: it was enforced by the rendering engine rather than the browser kernel.</p>
+
+    <p>Quick definition:</p>
+    <blockquote><strong>same-origin policy (SOP):</strong> the concept that an origin on the web (a host, a port, and a scheme) should only be able to read its own data, not that of other websites.</blockquote>
+
+    <h2>How It Works</h2>
+
+    <p>Chromium's security architecture consists of two parts:</p>
+
+    <blockquote><strong>Browser kernel:</strong> interacts with the user's OS and handles tasks such as file uploads, downloads, keystrokes, and displaying webpages on the monitor.</blockquote>
+
+    <blockquote><strong>Rendering engine:</strong> interacts directly with web applications and calls the browser kernel API when it needs to interact with the user's operating system.</blockquote>
+
+    <p>The security implication is that the web application has no direct interface with the filesystem. If a user wishes to download a file, the web application and rendering engine send a request to the browser kernel to enable the download, rather than doing it directly. The browser kernel displays and manages the UI for the user to download the file, and its interface is designed with transparency in mind.</p>
+
+    <p>The design goal is to make it clear what the user is downloading and that they consent to the interaction, rather than allowing a compromised rendering engine to download in the background without the user's awareness. This doesn't block potentially malicious downloads, but it enforces security through visibility.</p>
+
+    <h2>The Catch</h2>
+
+    <p>The 2008 security architecture paper created a browser that runs a single browser kernel. Historically, that kernel interacted with multiple rendering engines, each serving multiple origins. The browser kernel had access to data from all rendering engines. Each rendering engine should only have access to its own data, but the browser kernel did nothing to enforce this.</p>
+
+    <p>The browser kernel did not verify that calls from a rendering engine request only data from their origins, which means that if attacker.com compromised the rendering engine, it could ask the browser kernel for bank.com's data and receive it.</p>
+
+    <p>So, why didn't they have the browser kernel check origins?</p>
+
+    <p>One reason is that it isn't as simple as one tab = one origin: one rendering engine could load resources from multiple origins for images, fonts, payments, or advertisements. Forcing the browser kernel to differentiate among origins and determine which origins one rendering engine should be allowed to access would require memory and data overhead.</p>
+
+    <p>Furthermore, this architecture was built in response to the high-impact, prevalent threat to the web at the time: arbitrary code execution on a user's OS due to a web exploit.</p>
+
+    <h2>Thread</h2>
+
+    <p>It took years to develop a systematic method for mapping a rendering engine to a site, but Google eventually developed <a href="https://www.usenix.org/conference/usenixsecurity19/presentation/reis">Site Isolation</a>.</p>
+
+    <p><a href="https://spectreattack.com/spectre.pdf">Spectre</a> was a class of vulnerabilities that exploit speculative execution in CPUs that allowed a process to read memory outside its sandbox. That made process isolation an urgent matter, since if attacker.com and bank.com were running in the same process, the attacker could get bank data.</p>
+
+    <p>Google's answer was to give each site its own renderer process. This gives the browser kernel a simple and objective way to determine whether a request comes from a valid origin: just look at the process ID.</p>
+
+    <p>This was difficult because cross-origin iframes typically lived in the same rendering engine and process as their parent, and making these origins run in separate processes (developing out-of-process iframes or OOPIF) required rethinking fundamental web functions that assumed that these frames and their parents would share a process.</p>
+
+    <p>Once every origin lived in its own process, the browser kernel finally had the information it needed to do what the 2008 paper couldn't: enforce origin boundaries at the kernel level.</p>
+
+  </article>
+
+  <div class="post-footer">
+    <a href="../index.html">← All posts</a>
+    <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
+      May 2026 · Behuve Research
+    </span>
+  </div>
+
+</main>
+
+<footer>
+  <span>Behuve Research</span>
+  <span>© 2025</span>
+</footer>
+
+</body>
+</html>
